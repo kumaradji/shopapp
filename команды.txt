@@ -1,0 +1,20 @@
+# Создаём новый проект с вертуальным окружением
+django-admin startproject shopapp
+
+python -m venv venv
+source venv/bin/activate
+pip install django
+pip install -r requirements.txt
+django-admin startproject
+
+cd shopapp
+python manage.py runserver
+python manage.py createsuperuser
+cd news_portal # переходим через открыть через терминал
+python3 manage.py startapp simpleapp
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+python3 manage.py shell
+from simpleapp.models import *
