@@ -2,9 +2,7 @@ from django_filters import FilterSet, ModelChoiceFilter
 from .models import Product, Material
 
 
-# Создаем свой набор фильтров для модели Product.
-# FilterSet, который мы наследуем,
-# должен чем-то напомнить знакомые вам Django дженерики.
+
 class ProductFilter(FilterSet):
     material = ModelChoiceFilter(
         field_name='productmaterial__material',
