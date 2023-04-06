@@ -11,7 +11,7 @@ cd shopapp
 python manage.py runserver
 python manage.py createsuperuser
 cd news_portal # переходим через открыть через терминал
-python3 manage.py startapp simpleapp
+python manage.py startapp simpleapp
 
 python3 manage.py makemigrations
 python3 manage.py migrate
