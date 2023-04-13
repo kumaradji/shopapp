@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -32,14 +33,16 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreate(CreateView):
+class ProductCreate(LoginRequiredMixin, CreateView):
+    raise_exception = True
     form_class = ProductForm
     model = Product
     template_name = 'product_edit.html'
 
 
 # Добавляем представление для изменения товара.
-class ProductUpdate(UpdateView):
+class ProductUpdate(LoginRequiredMixin, UpdateView):
+    raise_exception = True
     form_class = ProductForm
     model = Product
     template_name = 'product_edit.html'
@@ -47,6 +50,7 @@ class ProductUpdate(UpdateView):
 
 # Представление удаляющее товар.
 class ProductDelete(DeleteView):
+    raise_exception = True
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
