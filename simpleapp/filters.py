@@ -3,16 +3,16 @@ from .models import Product, Material
 
 
 class ProductFilter(FilterSet):
-    material = ModelChoiceFilter(
-        field_name='productmaterial__material',
-        queryset=Material.objects.all(),
-        label='Material'
-    )
+    # material = ModelChoiceFilter(
+    #     field_name='productmaterial__material',
+    #     queryset=Material.objects.all(),
+    #     label='Material'
+    # )
 
     class Meta:
         model = Product
         fields = {
-            'productmaterial__material': ['exact'],
+            # 'productmaterial__material': ['exact'],
             'name': ['icontains'],
             # количество товаров должно быть больше или равно
             'quantity': ['gt'],
