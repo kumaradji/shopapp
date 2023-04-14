@@ -2,7 +2,6 @@ from django_filters import FilterSet, ModelChoiceFilter
 from .models import Product, Material
 
 
-
 class ProductFilter(FilterSet):
     material = ModelChoiceFilter(
         field_name='productmaterial__material',

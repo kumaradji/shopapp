@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6qzy&+*o&&(+#re6mm6)gn9jc5mgll-dyum4gli3b(&smu-v3l'
 
 DEBUG = True
-
+ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -94,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 

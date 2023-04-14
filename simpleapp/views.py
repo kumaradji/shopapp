@@ -1,5 +1,5 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -14,7 +14,7 @@ class ProductsList(ListView):
     ordering = 'name'
     template_name = 'products.html'
     context_object_name = 'products'
-    paginate_by = 2
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -33,24 +33,22 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreate(LoginRequiredMixin, CreateView):
-    raise_exception = True
+class ProductCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('simpleapp.add_product',)
     form_class = ProductForm
     model = Product
     template_name = 'product_edit.html'
 
 
-# Добавляем представление для изменения товара.
-class ProductUpdate(LoginRequiredMixin, UpdateView):
-    raise_exception = True
+class ProductUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('simpleapp.change_product',)
     form_class = ProductForm
     model = Product
     template_name = 'product_edit.html'
 
 
-# Представление удаляющее товар.
-class ProductDelete(DeleteView):
-    raise_exception = True
+class ProductDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('simpleapp.delete_product',)
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
